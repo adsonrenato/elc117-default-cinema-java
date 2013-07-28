@@ -23,31 +23,34 @@ public class SessoesController {
         this.model = model;
     }
     
-    public Cinema criarSessao() {
+    public void criarSessao() {
         Sessao s = newFromViewS(); 
         if (!checaHorario()) {
             viewS.showError("Essa sala não estará disponível no horário escolhido!");
-            return model;
+            return;
         }
         if (s != null) model.add(s);
         updateFrame();
-        return model;
+    }
+    
+    public boolean iguais(int i, int j) {
+        String str1 = ((String)(viewS.getComboFilme().getItemAt(i)));
+        String str2 = ((String)(viewS.getComboFilme().getItemAt(j)));
+        if (str1 == null || str2 == null) return false;
+        boolean iguais = (str1).equals(str2);
+        return iguais;
     }
     
     public void updateFrame() {
-        int i = 0, j;
+        int i, j; 
         viewS.getComboFilme().removeAllItems();
-        while (model.size() > i) {
-            for (j=0; j <= model.size(); j++) {
-                    if ((viewS.getComboFilme()).getItemAt(j)!= null && !(model.get(i).getFilme().equals((String)(viewS.getComboFilme()).getItemAt(j)))) {
-                        (viewS.getComboFilme()).addItem(model.get(i).getFilme());
-                        j=0;
-                    }
-                    if ((viewS.getComboFilme()).getItemAt(0)== null) {
-                        (viewS.getComboFilme()).addItem(model.get(i).getFilme());
-                    }
+        for (i = 0; i < model.size(); i++) {
+            (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+        }
+        for (i = 0; i < viewS.getComboFilme().getItemCount(); i++) {
+            for (j = 0; j < viewS.getComboFilme().getItemCount(); j++) {
+                if (iguais(i, j) && i != j)  (viewS.getComboFilme()).removeItemAt(j);
             }
-            i++;
         }
     }
     
@@ -62,15 +65,17 @@ public class SessoesController {
             int hAnt, minAnt, hDes, minDes, i;
             hDes = Integer.parseInt((horarioDesejado.split("h"))[0]);
             minDes = Integer.parseInt((((horarioDesejado.split("h"))[1]).split("min"))[0]);
+            int hDurDes = desejada.getDuracao()/60;
+            int minDurDes = desejada.getDuracao()%60;
+            Sessao s;
             for (i=0; i < (model.size()); i++) {
-                Sessao s = model.get(i);
+                s = model.get(i);
                 if (s.getSala() == salaDesejada && (s.getData()).equals(dataDesejada)) {
                     int h = s.getDuracao()/60;
                     int min = s.getDuracao()%60;
                     String horarioAnterior = s.getHorario();
                     hAnt = Integer.parseInt((horarioAnterior.split("h"))[0]);
                     minAnt = Integer.parseInt((((horarioAnterior.split("h"))[1]).split("min"))[0]);
-                    System.out.printf("%d: %d, %d, %d, %d\n", s.getSala(), h, min, hAnt, minAnt);
                     h += hAnt;
                     min += minAnt;
                     while (min >= 60)
@@ -78,11 +83,15 @@ public class SessoesController {
                         h++;
                         min -= 60;
                     }
-                    System.out.printf("%d: %d, %d, %d, %d\n", salaDesejada, h, min, hDes, minDes);
-                    if (hAnt <= hDes && hDes <= h) {
-                       if (h == hDes && min == minDes) return true;
-                       if (hAnt <= hDes && minDes <= minAnt) return false;
-                       if (h >= hDes && min < minDes) return false;
+                    if (hAnt == hDes && minAnt <= minDes) return false;
+                    if (hAnt < hDes && h > hDes) return false;
+                    if (h == hDes && min > minDes) return false;
+                    hDurDes += hDes;
+                    minDurDes += minDes;
+                    while (minDurDes >= 60)
+                    {
+                        hDurDes++;
+                        minDurDes -= 60;
                     }
                 }
             }

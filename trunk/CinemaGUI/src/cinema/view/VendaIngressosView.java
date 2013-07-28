@@ -98,6 +98,12 @@ public class VendaIngressosView extends javax.swing.JFrame {
 
         buttonBanner.setText("banner");
 
+        comboFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFilmeActionPerformed(evt);
+            }
+        });
+
         labelVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelVenda.setText("Venda de Ingressos:");
 
@@ -108,6 +114,12 @@ public class VendaIngressosView extends javax.swing.JFrame {
         labelIngressos.setText("Nº de Ingressos:");
 
         labelFilme.setText("Filme:");
+
+        comboSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSalaActionPerformed(evt);
+            }
+        });
 
         labelData.setText("Data:");
 
@@ -121,6 +133,12 @@ public class VendaIngressosView extends javax.swing.JFrame {
         });
 
         buttonRelatorio.setText("Emitir Relatório");
+
+        comboData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,6 +220,18 @@ public class VendaIngressosView extends javax.swing.JFrame {
     private void buttonSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSessaoActionPerformed
         controller.openSessoes();
     }//GEN-LAST:event_buttonSessaoActionPerformed
+
+    private void comboDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDataActionPerformed
+        controller.updateFilme();
+    }//GEN-LAST:event_comboDataActionPerformed
+
+    private void comboSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSalaActionPerformed
+      //  controller.updateHorario();
+    }//GEN-LAST:event_comboSalaActionPerformed
+
+    private void comboFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilmeActionPerformed
+       // controller.updateSala();
+    }//GEN-LAST:event_comboFilmeActionPerformed
 
     /**
      * @param args the command line arguments
