@@ -131,6 +131,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboFilmeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelVenda">
       <Properties>
@@ -168,6 +171,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboSalaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelData">
       <Properties>
@@ -198,6 +204,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboDataActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

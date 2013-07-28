@@ -223,7 +223,7 @@ public class CriaSessoesView extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
     private void buttonCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCriarActionPerformed
-        model = controller.criarSessao();
+        controller.criarSessao();
     }//GEN-LAST:event_buttonCriarActionPerformed
 
     /**
