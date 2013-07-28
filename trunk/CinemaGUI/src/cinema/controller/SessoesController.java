@@ -35,9 +35,18 @@ public class SessoesController {
     }
     
     public void updateFrame() {
-        int i = 0;
+        int i = 0, j;
+        viewS.getComboFilme().removeAllItems();
         while (model.size() > i) {
-            (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+            for (j=0; j <= model.size(); j++) {
+                    if ((viewS.getComboFilme()).getItemAt(j)!= null && !(model.get(i).getFilme().equals((String)(viewS.getComboFilme()).getItemAt(j)))) {
+                        (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+                        j=0;
+                    }
+                    if ((viewS.getComboFilme()).getItemAt(0)== null) {
+                        (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+                    }
+            }
             i++;
         }
     }

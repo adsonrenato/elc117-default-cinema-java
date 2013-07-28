@@ -36,7 +36,6 @@ public class CriaSessoesView extends javax.swing.JFrame {
     }
     
     public void updateFrame() {
-        comboFilme.removeAllItems();
         controller.updateFrame();
     }
     

@@ -31,16 +31,27 @@ public class IngressosController {
     }
     
     public void updateFrame() {
+        viewI.getComboFilme().removeAllItems();
+        viewI.getComboSala().removeAllItems();
+        viewI.getComboHorario().removeAllItems();
+        viewI.getComboData().removeAllItems();
         int i = 0;
-        Sessao aux;
+        int j;
         viewI.getComboData().setEnabled(true);
-        String str = (String) viewI.getComboData().getSelectedItem();
         while (model.size() > i) {
-            (viewI.getComboData()).addItem(model.get(i).getData());
+            for (j=0; j <= model.size(); j++) {
+                if ((viewI.getComboData()).getItemAt(j)!= null && !(model.get(i).getData().equals((String)(viewI.getComboData()).getItemAt(j)))) {
+                    (viewI.getComboData()).addItem(model.get(i).getData());
+                    j=0;
+                }
+                if ((viewI.getComboData()).getItemAt(0)== null) {
+                    (viewI.getComboData()).addItem(model.get(i).getData());
+                }
+            }
             i++;
         }
+        updateFilme();
         updateSala();
-        //updateFilme();
     }
     
     public void openSessoes () {
@@ -50,11 +61,42 @@ public class IngressosController {
         viewI.setVisible(false);
     }
     
-    public void updateSala() {
-        int i = 0;
-        String s = (String)(viewI.getComboData().getSelectedItem());
+        public void updateFilme() {
+        int i = 0, j;
+        String sd = (String)(viewI.getComboData().getSelectedItem());
         while (model.size() > i) {
-            if ((model.get(i).getData()).equals(s)) viewI.getComboSala().addItem(model.get(i).getData());
+            if ((model.get(i).getData()).equals(sd)) {
+                for (j=0; j <= model.size(); j++) {
+                    if ((viewI.getComboFilme()).getItemAt(j)!= null && !(model.get(i).getFilme().equals((String)(viewI.getComboFilme()).getItemAt(j)))) {
+                        (viewI.getComboFilme()).addItem(model.get(i).getFilme());
+                        j=0;
+                    }
+                    if ((viewI.getComboFilme()).getItemAt(0)== null) {
+                        (viewI.getComboFilme()).addItem(model.get(i).getFilme());
+                    }
+                }
+                i++;
+            }
+        }
+        viewI.getComboFilme().setEnabled(true);
+    }
+    
+    public void updateSala() {
+        int i = 0, j;
+        String sd = (String)(viewI.getComboData().getSelectedItem());
+        String sf = (String)(viewI.getComboFilme().getSelectedItem());
+        while (model.size() > i) {
+            if ((model.get(i).getData()).equals(sd) && (model.get(i).getFilme()).equals(sf)) {
+                for (j=0; j <= model.size(); j++) {
+                        if ((viewI.getComboSala()).getItemAt(j)!= null && !(model.get(i).getSala() == ((Integer)(viewI.getComboSala()).getItemAt(j)))) {
+                            viewI.getComboSala().addItem(model.get(i).getSala());
+                            j=0;
+                        }
+                        if ((viewI.getComboSala()).getItemAt(0)== null) {
+                            (viewI.getComboSala()).addItem(model.get(i).getSala());
+                        }
+                }
+            }
             i++;
         }
         viewI.getComboSala().setEnabled(true);
