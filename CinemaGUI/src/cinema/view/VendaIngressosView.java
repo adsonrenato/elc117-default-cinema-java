@@ -37,10 +37,6 @@ public class VendaIngressosView extends javax.swing.JFrame {
     }
     
     public void updateFrame() {
-        comboFilme.removeAllItems();
-        comboSala.removeAllItems();
-        comboHorario.removeAllItems();
-        comboData.removeAllItems();
         controller.updateFrame();
     }
     
