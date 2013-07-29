@@ -45,46 +45,40 @@ public class IngressosController {
     }
    
     public void updateFilme() {
-        /*int i, j;
-        viewI.getComboFilme().removeAllItems();
+        int i, j;
         viewI.getComboFilme().setEnabled(true);
-        String str = (String) viewI.getComboData().getSelectedItem();
+        String str1 = (String)viewI.getComboData().getSelectedItem();
+        int s = (int) ((viewI.getComboSala()).getSelectedItem());
         for (i = 0; i < model.size(); i++) {
-            if (str.equals(model.get(i).getData())) {
-                (viewI.getComboFilme()).addItem(model.get(i).getFilme());
+            for (j = 0; j < model.get(i).size(); j++) {
+                if (str1.equals(model.get(i).get(j).getData())) viewI.getComboFilme().addItem(model.get(i).get(j).getFilme());
             }
         }
-        for (i = 0; i < model.size(); i++) {
-            for (j = i+1; j < model.size(); j++) {   
-                if (model.get(i).getFilme().equals(model.get(j).getFilme()))
-                    (viewI.getComboFilme()).removeItem(model.get(j).getFilme());
-            }
-        }*/
     }
     public void updateData() {
         int i, j;
-        String strs = (String) (viewI.getComboSala()).getSelectedItem();
-        for (i = 0; i < model.get(i).size(); i++) {
-            for (j = i+1; j < model.size(); j++) {   
-                if (model.get(i).getSala() == (model.get(j).getSala()))
-                    (viewI.getComboSala()).removeItem(model.get(j).getSala());
+        viewI.getComboData().setEnabled(true);
+        for (i = 0; i < model.size(); i++) {
+            for (j = 0; j < model.get(i).size(); j++) {
+                viewI.getComboData().addItem(model.get(i).get(j).getData());
             }
         }
     }
     public void updateHorario() {
-        /*int i, j;
-        viewI.getComboHorario().removeAllItems();
+        int i, j;
         viewI.getComboHorario().setEnabled(true);
-        String strd = (String) viewI.getComboData().getSelectedItem();
-        String strf = (String) viewI.getComboFilme().getSelectedItem();
-        int sala;
-        if (viewI.getComboSala().getSelectedItem() != null) sala = (int) viewI.getComboSala().getSelectedItem();
-        else return;
+        String str1 = (String)viewI.getComboData().getSelectedItem();
+        String str2 = (String)viewI.getComboFilme().getSelectedItem();
+        int s = (int) ((viewI.getComboSala()).getSelectedItem());
         for (i = 0; i < model.size(); i++) {
-            if (strd.equals(model.get(i).getData()) && strf.equals(model.get(i).getFilme()) && sala == model.get(i).getSala()) {
-                (viewI.getComboHorario()).addItem(model.get(i).getHorario());
+            for (j = 0; j < model.get(i).size(); j++) {
+                if ((str2).equals(model.get(i).get(j).getFilme())) {
+                    if ((str1).equals(model.get(i).get(j).getData())) {
+                        viewI.getComboHorario().addItem(model.get(i).get(j).getHorario());
+                    }
+                }
             }
-        }*/
+        }
     }
  
     private Sessao newFromViewI() {
