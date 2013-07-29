@@ -10,19 +10,19 @@ import java.util.ArrayList;
  *
  * @author Felipe
  */
-public class Cinema extends Sessao{
+public class Cinema extends Sala{
     
-    private ArrayList<Sessao> cinema = new ArrayList<>();
+    private ArrayList<Sala> cinema = new ArrayList<>();
     
-    public void setCinema(ArrayList<Sessao> list) {
+    public void setCinema(ArrayList<Sala> list) {
         this.cinema = list;
     }
     
-    public ArrayList<Sessao> getCinema() {
+    public ArrayList<Sala> getCinema() {
         return this.cinema;
     }
     
-    public void add(Sessao s) {
+    public void add(Sala s) {
         cinema.add(s);
     }
     
@@ -30,7 +30,11 @@ public class Cinema extends Sessao{
         return cinema.size();
     }
     
-    public Sessao get(int index) {
+    public Sala get(int index) {
         return cinema.get(index);
+    }
+    
+    public void remove(Sala s) {
+        cinema.remove(s);
     }
 }
