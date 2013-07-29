@@ -35,12 +35,12 @@ public class CriaSessoesView extends javax.swing.JFrame {
         controller = new SessoesController(this, this.model);
     }
     
-    public void updateFrame() {
+    /*public void updateFrame() {
         controller.updateFrame();
-    }
+    }*/
     
-    public JComboBox getComboFilme() {
-        return comboFilme;
+    public JTextField getTextFilme() {
+        return textFilme;
     }
     
     public JComboBox getComboHorario() {
@@ -57,6 +57,10 @@ public class CriaSessoesView extends javax.swing.JFrame {
 
     public JTextField getTextMes() {
         return textMes;
+    }
+    
+    public JTextField getTextCapacidade() {
+        return textCapacidade;
     }
     
     public JTextField getTextDuracao() {
@@ -82,7 +86,6 @@ public class CriaSessoesView extends javax.swing.JFrame {
         labelSessao = new javax.swing.JLabel();
         labelFilme = new javax.swing.JLabel();
         labelSala = new javax.swing.JLabel();
-        comboFilme = new javax.swing.JComboBox();
         labelHorario = new javax.swing.JLabel();
         comboHorario = new javax.swing.JComboBox();
         buttonCriar = new javax.swing.JButton();
@@ -95,6 +98,9 @@ public class CriaSessoesView extends javax.swing.JFrame {
         textSala = new javax.swing.JTextField();
         labelDuracao = new javax.swing.JLabel();
         textDuracao = new javax.swing.JTextField();
+        textFilme = new javax.swing.JTextField();
+        labelCapacidade = new javax.swing.JLabel();
+        textCapacidade = new javax.swing.JTextField();
 
         jLabel2.setText("Sala:");
 
@@ -110,8 +116,6 @@ public class CriaSessoesView extends javax.swing.JFrame {
         labelFilme.setText("Filme:");
 
         labelSala.setText("Sala:");
-
-        comboFilme.setEditable(true);
 
         labelHorario.setText("Horário:");
 
@@ -139,49 +143,56 @@ public class CriaSessoesView extends javax.swing.JFrame {
 
         labelDuracao.setText("Duração(min):");
 
+        labelCapacidade.setText("Capacidade:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonBanner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(labelSessao))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelHorario)
-                                    .addComponent(labelFilme)
-                                    .addComponent(labelSala))
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboFilme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboHorario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(textSala, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(labelDuracao)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(textDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(labelData)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelHorario)
+                            .addComponent(labelFilme)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelSala)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textSala, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelCapacidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelAux)
+                                .addComponent(textCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelDuracao)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textMes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelAno)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonCriar)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)))))
-                .addGap(20, 20, 20))
+                                .addComponent(textDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(labelData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelAux)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textMes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelAno)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonCriar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(labelSessao)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +202,8 @@ public class CriaSessoesView extends javax.swing.JFrame {
                 .addComponent(labelSessao)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFilme))
+                    .addComponent(labelFilme)
+                    .addComponent(textFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +213,9 @@ public class CriaSessoesView extends javax.swing.JFrame {
                     .addComponent(labelSala)
                     .addComponent(textSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDuracao)
-                    .addComponent(textDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCapacidade)
+                    .addComponent(textCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelData)
@@ -264,20 +277,22 @@ public class CriaSessoesView extends javax.swing.JFrame {
     private javax.swing.JButton buttonBanner;
     private javax.swing.JButton buttonCriar;
     private javax.swing.JButton buttonVoltar;
-    private javax.swing.JComboBox comboFilme;
     private javax.swing.JComboBox comboHorario;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelAno;
     private javax.swing.JLabel labelAux;
+    private javax.swing.JLabel labelCapacidade;
     private javax.swing.JLabel labelData;
     private javax.swing.JLabel labelDuracao;
     private javax.swing.JLabel labelFilme;
     private javax.swing.JLabel labelHorario;
     private javax.swing.JLabel labelSala;
     private javax.swing.JLabel labelSessao;
+    private javax.swing.JTextField textCapacidade;
     private javax.swing.JTextField textDia;
     private javax.swing.JTextField textDuracao;
+    private javax.swing.JTextField textFilme;
     private javax.swing.JTextField textMes;
     private javax.swing.JTextField textSala;
     // End of variables declaration//GEN-END:variables

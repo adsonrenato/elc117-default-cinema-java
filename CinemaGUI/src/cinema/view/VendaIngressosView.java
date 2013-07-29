@@ -10,6 +10,7 @@ import cinema.model.Sessao;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 /**
  *
@@ -68,7 +69,10 @@ public class VendaIngressosView extends javax.swing.JFrame {
     public JButton getButtonVenda() {
         return buttonVenda;
     }
-    
+
+    public void showError(String msg) {
+        JOptionPane.showMessageDialog(this, msg);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,6 +128,11 @@ public class VendaIngressosView extends javax.swing.JFrame {
         labelData.setText("Data:");
 
         buttonVenda.setText("Processar Venda");
+        buttonVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVendaActionPerformed(evt);
+            }
+        });
 
         buttonSessao.setText("Adicionar Sessão");
         buttonSessao.addActionListener(new java.awt.event.ActionListener() {
@@ -226,12 +235,16 @@ public class VendaIngressosView extends javax.swing.JFrame {
     }//GEN-LAST:event_comboDataActionPerformed
 
     private void comboSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSalaActionPerformed
-      //  controller.updateHorario();
+      controller.updateHorario();
     }//GEN-LAST:event_comboSalaActionPerformed
 
     private void comboFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilmeActionPerformed
-       // controller.updateSala();
+       controller.updateSala();
     }//GEN-LAST:event_comboFilmeActionPerformed
+
+    private void buttonVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVendaActionPerformed
+       //controller.processarVenda();
+    }//GEN-LAST:event_buttonVendaActionPerformed
 
     /**
      * @param args the command line arguments

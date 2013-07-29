@@ -13,17 +13,14 @@ public class Sessao {
     private String filme;
     private String horario;
     private String data;
-    private int sala;
-    private int capacidade;
     private int duracao;
-    private int vendidos;
-    private boolean esgotada;
+    protected int vendidos;
+    protected boolean esgotada;
 
     public Sessao() {
         this.filme = "";
         this.horario = "14h30min";
         this.data = "";
-        this.capacidade = 40;
         this.vendidos = 0;
         this.esgotada = false;
     }
@@ -48,20 +45,12 @@ public class Sessao {
         this.data = (dia + "/" + mes);
     }
     
+    public void setData (String data) {
+        this.data = data;
+    }
+    
     public String getData () {
         return this.data;
-    }
-    
-    public void setSala (int sala) {
-        this.sala = sala;
-    }
-    
-    public int getSala () {
-        return this.sala;
-    }
-    
-    public void setCapacidade (int capacidade) {
-        this.capacidade = capacidade;
     }
     
     public void setDuracao (int duracao) {
@@ -70,6 +59,14 @@ public class Sessao {
     
     public int getDuracao () {
         return duracao;
+    }
+    
+    public int getVendidos () {
+        return vendidos;
+    }
+    
+    public void setVendidos (int vendidos) {
+        this.vendidos += vendidos;
     }
     
 }

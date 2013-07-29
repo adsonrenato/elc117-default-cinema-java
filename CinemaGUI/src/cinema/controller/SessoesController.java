@@ -5,6 +5,7 @@
 package cinema.controller;
 
 import cinema.model.Cinema;
+import cinema.model.Sala;
 import cinema.model.Sessao;
 import cinema.view.CriaSessoesView;
 import cinema.view.VendaIngressosView;
@@ -23,44 +24,56 @@ public class SessoesController {
         this.model = model;
     }
     
+    
     public void criarSessao() {
-        Sessao s = newFromViewS(); 
-        if (!checaHorario()) {
-            viewS.showError("Essa sala não estará disponível no horário escolhido!");
-            return;
-        }
-        if (s != null) model.add(s);
-        updateFrame();
-    }
-    
-    public boolean iguais(int i, int j) {
-        String str1 = ((String)(viewS.getComboFilme().getItemAt(i)));
-        String str2 = ((String)(viewS.getComboFilme().getItemAt(j)));
-        if (str1 == null || str2 == null) return false;
-        boolean iguais = (str1).equals(str2);
-        return iguais;
-    }
-    
-    public void updateFrame() {
-        int i, j; 
-        viewS.getComboFilme().removeAllItems();
+        Sessao s = newFromViewS();
+        if (s == null) return;
+        int id, i;
+        id = (Integer.parseInt(viewS.getTextSala().getText()));
         for (i = 0; i < model.size(); i++) {
-            (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+                if (model.get(i).getSalaID() == id) {
+                    /*if (!checaHorario()) {
+                        viewS.showError("Essa sala não estará disponível no horário escolhido!");
+                        return;
+                    }*/
+                    model.get(i).add(s);
+                    break;
+                    }
+                }
+        if (i == model.size()) {
+            Sala sala = new Sala();
+            int capacidade = Integer.parseInt(viewS.getTextCapacidade().getText());
+            sala.setSalaID(id);
+            sala.setCapacidade(capacidade);
+            /*if (!checaHorario()) {
+                viewS.showError("Essa sala não estará disponível no horário escolhido!");
+                return;
+            }*/
+            model.add(sala);
         }
+        //updateFrame();
+    }
+    
+    
+    /*public void updateFrame() {
+        int i, j;
+        String str;
         for (i = 0; i < viewS.getComboFilme().getItemCount(); i++) {
-            for (j = 0; j < viewS.getComboFilme().getItemCount(); j++) {
-                if (iguais(i, j) && i != j)  (viewS.getComboFilme()).removeItemAt(j);
+            for (j = 0; j < model.size(); j++) {
+                str = (String)(viewS.getComboFilme().getItemAt(i));
+                if ((str == null) || !((model.get(j).getFilme()).equals(str))) {
+                    (viewS.getComboFilme()).addItem(model.get(i).getFilme());
+                }
             }
         }
-    }
+    }*/
     
-    public boolean checaHorario() {
+    /*public boolean checaHorario() {
         if (model.size() > 0) { 
             String horarioDesejado, dataDesejada;
-            int salaDesejada;
+            int salaDesejadaID;
             Sessao desejada = newFromViewS();
             horarioDesejado = desejada.getHorario();
-            salaDesejada = desejada.getSala();
             dataDesejada = desejada.getData();
             int hAnt, minAnt, hDes, minDes, i;
             hDes = Integer.parseInt((horarioDesejado.split("h"))[0]);
@@ -93,11 +106,14 @@ public class SessoesController {
                         hDurDes++;
                         minDurDes -= 60;
                     }
+                    if (hAnt > hDes && hDurDes > hAnt) return false;
+                    if (hAnt >= hDes && hDurDes == hAnt && minDurDes > minAnt) return false;
+                    
                 }
             }
         }
         return true;
-    }
+    }*/
     
     public void openIngressos () {
         VendaIngressosView viewI = new VendaIngressosView(model);
@@ -109,15 +125,23 @@ public class SessoesController {
     private Sessao newFromViewS() {
         try {
             Sessao s = new Sessao();
-            s.setFilme((String)(viewS.getComboFilme().getSelectedItem()));
+            s.setFilme(viewS.getTextFilme().getText());
             s.setHorario((String)(viewS.getComboHorario().getSelectedItem()));
-            s.setSala(Integer.parseInt(viewS.getTextSala().getText()));
-            s.setData(viewS.getTextDia().getText(), viewS.getTextMes().getText());
             s.setDuracao(Integer.parseInt(viewS.getTextDuracao().getText()));
+            s.setData(viewS.getTextDia().getText(), viewS.getTextMes().getText());
+            int i, id = (Integer.parseInt(viewS.getTextSala().getText()));
+            for (i = 0; i < model.size(); i++) {
+                if (model.get(i).getSalaID() == id) {
+                    break;
+                    }
+                }
+            if (i == model.size()) {
+                int capacidade = Integer.parseInt(viewS.getTextCapacidade().getText());
+                }
             return s;
-        } catch (NumberFormatException e) {
-            viewS.showError("Dado(s) de entrada invalido(s)!");
-            return null;
-        }
+            } catch (NumberFormatException e) {
+                viewS.showError("Dado(s) de entrada invalido(s)!");
+                return null;
+            }
     }
 }
