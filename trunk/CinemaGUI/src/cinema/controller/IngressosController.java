@@ -38,6 +38,14 @@ public class IngressosController {
         }
     }
     
+    public boolean iguaisData(int i, int j) {
+        String str1 = ((String)(viewI.getComboData().getItemAt(i)));
+        String str2 = ((String)(viewI.getComboData().getItemAt(j)));
+        if (str1 == null || str2 == null) return false;
+        boolean iguais = (str1).equals(str2);
+        return iguais;
+    }
+    
     public void openSessoes () {
         CriaSessoesView viewS = new CriaSessoesView(model);
         viewS.setVisible(true);
@@ -45,7 +53,7 @@ public class IngressosController {
     }
    
     public void updateFilme() {
-        int i, j;
+        /*int i, j;
         viewI.getComboFilme().setEnabled(true);
         String str1 = (String)viewI.getComboData().getSelectedItem();
         int s = (int) ((viewI.getComboSala()).getSelectedItem());
@@ -53,19 +61,34 @@ public class IngressosController {
             for (j = 0; j < model.get(i).size(); j++) {
                 if (str1.equals(model.get(i).get(j).getData())) viewI.getComboFilme().addItem(model.get(i).get(j).getFilme());
             }
-        }
+        }*/
     }
     public void updateData() {
         int i, j;
         viewI.getComboData().setEnabled(true);
+        viewI.getComboData().removeAllItems();
+        int salaID = (int)viewI.getComboSala().getSelectedItem();
         for (i = 0; i < model.size(); i++) {
-            for (j = 0; j < model.get(i).size(); j++) {
-                viewI.getComboData().addItem(model.get(i).get(j).getData());
+            if (salaID == model.get(i).getSalaID()) break;
+        }
+        for (j = 0; j < model.get(i).size(); j++) {
+            viewI.getComboData().addItem(model.get(i).get(j).getData());
+        }
+        int tam = viewI.getComboData().getItemCount();
+        for (i = 0; i < tam; i++) {
+            for (j = i+1; j < tam; j++) {
+                if (iguaisData(i, j)) {
+                    viewI.getComboData().removeItemAt(j);
+                    tam = viewI.getComboData().getItemCount();
+                    i = 0;
+                    j = i+1;
+                }
             }
         }
     }
+    
     public void updateHorario() {
-        int i, j;
+       /* int i, j;
         viewI.getComboHorario().setEnabled(true);
         String str1 = (String)viewI.getComboData().getSelectedItem();
         String str2 = (String)viewI.getComboFilme().getSelectedItem();
@@ -78,7 +101,7 @@ public class IngressosController {
                     }
                 }
             }
-        }
+        }*/
     }
  
     private Sessao newFromViewI() {
