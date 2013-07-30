@@ -30,6 +30,15 @@ public class SessoesController {
         if (s == null) return;
         int id, i;
         id = (Integer.parseInt(viewS.getTextSala().getText()));
+        if (model.size() == 0) {
+            Sala sala = new Sala();
+            int capacidade = Integer.parseInt(viewS.getTextCapacidade().getText());
+            sala.add(s);
+            sala.setSalaID(id);
+            sala.setCapacidade(capacidade);
+            model.add(sala);
+            return;
+        }
         for (i = 0; i < model.size(); i++) {
                 if (model.get(i).getSalaID() == id) {
                     /*if (!checaHorario()) {
@@ -37,7 +46,7 @@ public class SessoesController {
                         return;
                     }*/
                     model.get(i).add(s);
-                    break;
+                    return;
                     }
                 }
         if (i == model.size()) {
