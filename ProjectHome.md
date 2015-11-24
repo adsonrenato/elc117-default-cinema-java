@@ -1,0 +1,1 @@
+Gerenciador de venda de ingressos, em um cinema, que permite a criação de sessões e salas. Produzido para a disciplina ELC117(Paradigmas de Programação) do curso Ciência da Computação da Universidade Federal de Santa Maria.
